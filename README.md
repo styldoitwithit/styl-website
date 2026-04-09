@@ -1,36 +1,144 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# STYL Digital Marketing — Website
+
+Production-ready Next.js website for **STYL Digital Marketing**, India's No.1 Healthcare Branding Expert for Hospitals & Doctors. Based in Chennai.
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **Database**: Firebase Firestore
+- **Auth**: Firebase Authentication
+- **Animations**: Framer Motion
+- **Forms**: React Hook Form
+- **Toasts**: React Hot Toast
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Configure Firebase
+
+Copy `.env.example` to `.env.local` and fill in your Firebase project credentials:
+
+```bash
+cp .env.example .env.local
+```
+
+Get your credentials from: [Firebase Console](https://console.firebase.google.com) → Your Project → Project Settings → Web App
+
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+```
+
+### 3. Seed Firestore (optional — populates initial data)
+
+Install tsx for running TypeScript scripts:
+
+```bash
+npm install -D tsx dotenv
+```
+
+Then run:
+
+```bash
+npx tsx src/scripts/seed.ts
+```
+
+This populates: clients, testimonials, case studies, services, and stats.
+
+### 4. Add client logo images
+
+Place images in `public/assets/` — see `public/assets/README.md` for required filenames.
+
+### 5. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Admin Dashboard
 
-## Learn More
+- Login: [http://localhost:3000/admin/login](http://localhost:3000/admin/login)
+- Dashboard: [http://localhost:3000/admin](http://localhost:3000/admin)
 
-To learn more about Next.js, take a look at the following resources:
+**To create an admin user:**
+1. Go to Firebase Console → Authentication → Users → Add User
+2. Use that email/password to log in at `/admin/login`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Site Pages
 
-## Deploy on Vercel
+| Route | Description |
+|-------|-------------|
+| `/` | Home — Hero, clients, case studies, services, stats, testimonials, contact |
+| `/about` | About STYL — story, values, team |
+| `/services` | Services overview |
+| `/services/[slug]` | Individual service detail |
+| `/clients` | Client portfolio & case studies |
+| `/blog` | Blog listing |
+| `/blog/[slug]` | Individual blog post |
+| `/process` | Our 5-step process |
+| `/contact` | Contact page |
+| `/admin/login` | Admin login |
+| `/admin` | Admin dashboard (auth protected) |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment (Vercel)
+
+```bash
+npm run build
+```
+
+Deploy via Vercel:
+1. Push to GitHub
+2. Connect repo to Vercel
+3. Add environment variables in Vercel project settings
+4. Deploy
+
+---
+
+## Project Structure
+
+```
+src/
+├── app/               # Next.js App Router pages
+│   ├── about/
+│   ├── admin/
+│   ├── blog/[slug]/
+│   ├── clients/
+│   ├── contact/
+│   ├── process/
+│   ├── services/[slug]/
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   ├── admin/         # Admin dashboard components
+│   ├── layout/        # Navbar, Footer
+│   ├── sections/      # Home page sections
+│   └── ui/            # Reusable UI primitives
+├── lib/
+│   ├── firebase.ts    # Firebase initialisation
+│   └── firestore.ts   # Firestore helper functions
+├── scripts/
+│   └── seed.ts        # Database seed script
+└── types/
+    └── index.ts       # TypeScript types
+```

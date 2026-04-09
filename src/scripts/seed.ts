@@ -1,0 +1,124 @@
+/**
+ * Firestore Seed Script
+ *
+ * Usage:
+ *   1. Fill in .env.local with your Firebase credentials
+ *   2. Run: npx tsx src/scripts/seed.ts
+ *
+ * This will populate all Firestore collections with initial data.
+ */
+
+import { initializeApp, getApps } from 'firebase/app';
+import { getFirestore, collection, addDoc, setDoc, doc, Timestamp } from 'firebase/firestore';
+
+// Load env (when running via tsx, use dotenv)
+import * as dotenv from 'dotenv';
+dotenv.config({ path: '.env.local' });
+
+const firebaseConfig = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+};
+
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+const db = getFirestore(app);
+
+async function seed() {
+  console.log('🌱 Starting seed...');
+
+  // ── Clients ──────────────────────────────────────────────────────────────
+  const clients = [
+    { name: 'ATLAS HOSPITALS', logo: '/assets/ATLAS HOSPITALS.png', category: 'Healthcare', order: 1 },
+    { name: 'DR ANILKUMAR EYE HOSPITAL', logo: '/assets/DR ANILKUMAR EYE HOSPITAL.jpg', category: 'Healthcare', order: 2 },
+    { name: 'MUKESH ARTHRO CARE HOSPITAL', logo: '/assets/MUKESH ARTHRO CARE HOSPITAL.png', category: 'Healthcare', order: 3 },
+    { name: 'SRI RAMAKRISHNA SPECIALTY HOSPITALS', logo: '/assets/SRI RAMAKRISHNA SPECIALTY HOSPITALS.jpg', category: 'Healthcare', order: 4 },
+    { name: 'SHREE CLINIC', logo: '', category: 'Healthcare', order: 5 },
+  ];
+  for (const c of clients) await addDoc(collection(db, 'clients'), c);
+  console.log('✅ Clients seeded');
+
+  // ── Testimonials ─────────────────────────────────────────────────────────
+  const testimonials = [
+    { author: 'DR JAIKISH S', role: 'CEO', company: 'ATLAS HOSPITALS', quote: "As a doctor, I was looking for a reliable digital marketing team to grow my hospital's online presence. This team did an excellent job with Google Ads, social media marketing, and patient engagement. I've seen a noticeable increase in appointments and inquiries. Highly recommended for healthcare marketing!", order: 1 },
+    { author: 'DR MADHUPRIYA', role: 'Managing Director', company: "Shree Centre for Fertility and Women's Care", quote: "We truly trust and value the digital marketing support provided for our fertility and women's care services. Their approach has genuinely helped us expand our reach and build stronger patient engagement. The team is reliable, responsive, and clearly understands the sensitivity and importance of healthcare communication.", order: 2 },
+    { author: 'DR VIJAYANAD', role: 'Founder', company: 'SRI RAMAKRISHNA SPECIALTY HOSPITALS', quote: "We partnered with this digital marketing team to enhance our hospital's online reach. Their strategies in SEO, Google Ads, and social media have significantly improved our patient inflow. They understand the healthcare industry well and provide consistent support. Highly satisfied with their service.", order: 3 },
+  ];
+  for (const t of testimonials) await addDoc(collection(db, 'testimonials'), t);
+  console.log('✅ Testimonials seeded');
+
+  // ── Case Studies ─────────────────────────────────────────────────────────
+  const caseStudies = [
+    {
+      client: 'ATLAS HOSPITALS', logo: '/assets/ATLAS HOSPITALS.png', category: 'Healthcare',
+      challenge: 'Low patient acquisition rate and declining referral numbers across outpatient departments.',
+      strategy: 'Deployed a targeted paid ads campaign combined with a referral incentive programme across key catchment areas.',
+      result: 'Significant growth in new patient registrations within the first 60 days of the campaign.',
+      metrics: [
+        { label: 'ROI', value: '320%', direction: 'up' },
+        { label: 'Leads Generated', value: '250+', direction: 'up' },
+        { label: 'Growth Rate', value: '40%', direction: 'up' },
+        { label: 'Cost Per Lead', value: '↓60%', direction: 'down' },
+      ], order: 1,
+    },
+    {
+      client: 'DR ANILKUMAR EYE HOSPITAL', logo: '/assets/DR ANILKUMAR EYE HOSPITAL.jpg', category: 'Healthcare',
+      challenge: 'Struggling to convert online enquiries into booked appointments despite high website traffic.',
+      strategy: 'Redesigned the enquiry funnel and introduced automated follow-up sequences to nurture leads effectively.',
+      result: 'Conversion rate tripled within 45 days, with a measurable drop in enquiry response time.',
+      metrics: [
+        { label: 'Conversion Rate', value: '3×', direction: 'up' },
+        { label: 'Appointments Booked', value: '180+', direction: 'up' },
+        { label: 'Faster Response', value: '55%', direction: 'up' },
+        { label: 'Revenue Growth', value: '↑28%', direction: 'up' },
+      ], order: 2,
+    },
+    {
+      client: 'MUKESH ARTHRO CARE HOSPITAL', logo: '/assets/MUKESH ARTHRO CARE HOSPITAL.png', category: 'Healthcare',
+      challenge: 'Lack of brand visibility in a competitive regional market with multiple established providers.',
+      strategy: 'Executed a multi-channel brand awareness campaign including content marketing, local SEO, and community events.',
+      result: 'Brand recall improved substantially and organic search traffic increased month on month.',
+      metrics: [
+        { label: 'Search Visibility', value: '5×', direction: 'up' },
+        { label: 'New Patients', value: '400+', direction: 'up' },
+        { label: 'Organic Traffic', value: '70%', direction: 'up' },
+        { label: 'Brand Recall', value: '↑45%', direction: 'up' },
+      ], order: 3,
+    },
+  ];
+  for (const cs of caseStudies) await addDoc(collection(db, 'case_studies'), cs);
+  console.log('✅ Case studies seeded');
+
+  // ── Services ─────────────────────────────────────────────────────────────
+  const services = [
+    { slug: 'seo', title: 'Rank No.1 in Google Searches', icon: 'search', summary: 'Technical SEO for better visibility, organic traffic from healthcare searches, Google Business Profile optimization.', bullets: ['Technical SEO for better visibility', 'Organic traffic from healthcare searches', 'Google Business Profile optimization'], order: 1 },
+    { slug: 'social-media', title: 'Let Your Voice Reach Millions', icon: 'megaphone', summary: 'Platform-optimized healthcare content, active social media communication, strategic brand storytelling.', bullets: ['Platform-optimized healthcare content', 'Active social media communication', 'Strategic brand storytelling'], order: 2 },
+    { slug: 'paid-ads', title: 'Exposure to International Clients', icon: 'chart', summary: 'Location-based patient lead campaigns, maximum ROI with data-driven tracking, ad campaigns that drive appointments.', bullets: ['Location-based patient lead campaigns', 'Maximum ROI with data-driven tracking', 'Ad campaigns that drive appointments'], order: 3 },
+    { slug: 'video-production', title: 'Experienced Video Production Team', icon: 'video', summary: 'Patient treatment explainer videos, high-quality medical visual content, video for website and social media.', bullets: ['Patient treatment explainer videos', 'High-quality medical visual content', 'Video for website and social media'], order: 4 },
+    { slug: 'branding', title: 'Personalized Brand Consulting', icon: 'star', summary: 'Hospital brand patients trust instantly, logos and messaging for healthcare, long-term brand recognition strategy.', bullets: ['Hospital brand patients trust instantly', 'Logos and messaging for healthcare', 'Long-term brand recognition strategy'], order: 5 },
+    { slug: 'web-design', title: 'Website Designed For Hospitals', icon: 'globe', summary: 'Fast, mobile-friendly patient websites, SEO-ready structure for search visibility, seamless appointment booking flow.', bullets: ['Fast, mobile-friendly patient websites', 'SEO-ready structure for search visibility', 'Seamless appointment booking flow'], order: 6 },
+  ];
+  for (const s of services) await addDoc(collection(db, 'services'), s);
+  console.log('✅ Services seeded');
+
+  // ── Stats ─────────────────────────────────────────────────────────────────
+  await setDoc(doc(db, 'stats', 'main'), {
+    clients_served: '150+',
+    average_roi: '15X',
+    video_hours: '1250+',
+    years_experience: '15+',
+    cost_per_lead_reduction: '45%',
+  });
+  console.log('✅ Stats seeded');
+
+  console.log('\n🎉 Seed complete! All collections populated.');
+  process.exit(0);
+}
+
+seed().catch((err) => {
+  console.error('❌ Seed failed:', err);
+  process.exit(1);
+});
