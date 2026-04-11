@@ -20,10 +20,6 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          <span className="inline-block font-body text-xs font-medium tracking-[0.3em] text-gold uppercase mb-6 px-4 py-2 border border-gold/30 rounded-full bg-gold/5">
-            Healthcare Digital Marketing
-          </span>
-
           <h1 className="font-heading text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] font-semibold leading-[1.1] text-white mb-6">
             India&apos;s No.1{' '}
             <span className="text-gold italic">Healthcare</span>
@@ -54,32 +50,8 @@ export function HeroSection() {
           </div>
         </motion.div>
 
-        {/* Stats strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto"
-        >
-          {[
-            { value: '150+', label: 'Clients Served' },
-            { value: '15X', label: 'Average ROI' },
-            { value: '15+', label: 'Years Experience' },
-            { value: '45%', label: 'Lower Cost Per Lead' },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center p-4 border border-border rounded-lg bg-surface/50 backdrop-blur-sm">
-              <div className="font-heading text-3xl font-bold text-gold">{stat.value}</div>
-              <div className="font-body text-xs text-text-secondary mt-1">{stat.label}</div>
-            </div>
-          ))}
-        </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-secondary">
-        <span className="font-body text-xs tracking-widest uppercase">Scroll</span>
-        <div className="w-px h-12 bg-gradient-to-b from-text-secondary to-transparent" />
-      </div>
     </section>
   );
 }
