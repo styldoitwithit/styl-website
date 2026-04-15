@@ -40,3 +40,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# large video assets (too large for GitHub — add locally or host on Firebase Storage)
+/public/assets/*.mp4
+/public/assets/*.mov
+/public/assets/*.webm

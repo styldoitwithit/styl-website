@@ -37,7 +37,7 @@ export function ServicesGrid({ services }: { services: Service[] }) {
                 className="group bg-background border border-border rounded-xl p-6 hover:border-gold/50 hover:shadow-[0_0_30px_rgba(201,168,76,0.08)] transition-all duration-300"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-gold/10 border border-gold/20 rounded-lg flex items-center justify-center group-hover:bg-gold/20 transition-colors">
+                  <div className="shrink-0 w-10 h-10 bg-gold/10 border border-gold/20 rounded-lg flex items-center justify-center group-hover:bg-gold/20 transition-colors">
                     <Icon className="w-5 h-5 text-gold" />
                   </div>
                   <div className="flex-1">
@@ -45,7 +45,7 @@ export function ServicesGrid({ services }: { services: Service[] }) {
                     <ul className="space-y-1.5 mb-4">
                       {service.bullets.map((bullet, i) => (
                         <li key={i} className="flex items-start gap-2 font-body text-sm text-text-secondary">
-                          <span className="text-gold mt-0.5 flex-shrink-0">→</span>
+                          <span className="text-gold mt-0.5 shrink-0">→</span>
                           {bullet}
                         </li>
                       ))}

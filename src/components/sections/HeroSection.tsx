@@ -2,19 +2,45 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
+// Place your video file in public/assets/ with this exact filename.
+// It is gitignored so it won't be pushed to GitHub.
+// For production, swap this for a Firebase Storage or CDN URL.
+const VIDEO_SRC = '/assets/hero-bg.mp4';
+
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background gradient mesh */}
-      <div className="absolute inset-0 bg-background">
+
+      {/* ── Video background ──────────────────────────────────── */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ zIndex: 0 }}
+      >
+        <source src={VIDEO_SRC} type="video/mp4" />
+      </video>
+
+      {/* ── Dark overlay for text legibility ─────────────────── */}
+      <div
+        className="absolute inset-0"
+        style={{
+          zIndex: 1,
+          background:
+            'linear-gradient(to bottom, rgba(10,10,15,0.65) 0%, rgba(10,10,15,0.55) 60%, rgba(10,10,15,0.85) 100%)',
+        }}
+      />
+
+      {/* ── Gold gradient accents ─────────────────────────────── */}
+      <div className="absolute inset-0" style={{ zIndex: 2, pointerEvents: 'none' }}>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(201,168,76,0.08)_0%,transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(26,26,46,0.6)_0%,transparent_60%)]" />
-        {/* Animated orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gold/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-navy/40 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(26,26,46,0.4)_0%,transparent_60%)]" />
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* ── Content ───────────────────────────────────────────── */}
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style={{ zIndex: 3 }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -49,7 +75,6 @@ export function HeroSection() {
             </Link>
           </div>
         </motion.div>
-
       </div>
 
     </section>
