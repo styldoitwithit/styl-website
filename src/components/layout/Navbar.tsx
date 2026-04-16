@@ -14,12 +14,13 @@ const navLinks = [
 ];
 
 const serviceLinks = [
-  { label: 'SEO & Search Visibility',       slug: 'seo' },
   { label: 'Social Media Marketing',         slug: 'social-media' },
-  { label: 'Paid Ads & Lead Generation',     slug: 'paid-ads' },
-  { label: 'Video Production',               slug: 'video-production' },
+  { label: 'Search Engine Optimisation',     slug: 'seo' },
+  { label: 'Content Creation',               slug: 'content-creation' },
   { label: 'Brand Consulting',               slug: 'branding' },
-  { label: 'Hospital Website Design',        slug: 'web-design' },
+  { label: 'Ad Production',                  slug: 'ad-production' },
+  { label: 'Web Development',                slug: 'web-design' },
+  { label: 'Ads Management',                 slug: 'paid-ads' },
 ];
 
 export function Navbar() {

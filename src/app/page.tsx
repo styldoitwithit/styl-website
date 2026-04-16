@@ -157,7 +157,7 @@ export default async function HomePage() {
       <main>
         <HeroSection />
         <ClientsShowcase />
-        <ServicesGrid services={services} />
+        <ServicesGrid />
         <ProblemsSection />
         <SolutionsSection />
         <StatsBar stats={stats} />
