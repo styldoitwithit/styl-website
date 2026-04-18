@@ -1,11 +1,9 @@
 'use client';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { storageUrl } from '@/lib/firebase';
 
-// Place your video file in public/assets/ with this exact filename.
-// It is gitignored so it won't be pushed to GitHub.
-// For production, swap this for a Firebase Storage or CDN URL.
-const VIDEO_SRC = '/assets/hero-bg.mp4';
+const VIDEO_SRC = storageUrl('hero-bg.mp4');
 
 export function HeroSection() {
   return (

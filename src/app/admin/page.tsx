@@ -10,6 +10,7 @@ import { ServicesManager } from '@/components/admin/managers/ServicesManager';
 import { BlogManager } from '@/components/admin/managers/BlogManager';
 import { StatsManager } from '@/components/admin/managers/StatsManager';
 import { SubmissionsManager } from '@/components/admin/managers/SubmissionsManager';
+import { PageContentManager } from '@/components/admin/managers/PageContentManager';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 const sections: Record<string, React.ReactNode> = {};
@@ -24,6 +25,7 @@ function AdminContent({ section }: { section: string }) {
     case 'blog': return <BlogManager />;
     case 'stats': return <StatsManager />;
     case 'submissions': return <SubmissionsManager />;
+    case 'page_content': return <PageContentManager />;
     default: return <DashboardOverview />;
   }
 }

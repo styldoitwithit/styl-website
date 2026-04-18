@@ -141,3 +141,19 @@ export async function getCollectionCount(collectionName: string): Promise<number
   const snap = await getDocs(collection(getDb(), collectionName));
   return snap.size;
 }
+
+// ─── Page Content ─────────────────────────────────────────────────────────────
+
+export async function getPageContent(key: string): Promise<Record<string, unknown> | null> {
+  try {
+    const snap = await getDoc(doc(getDb(), 'page_content', key));
+    if (snap.exists()) return snap.data() as Record<string, unknown>;
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+export async function setPageContent(key: string, data: Record<string, unknown>): Promise<void> {
+  await setDocument('page_content', key, data);
+}

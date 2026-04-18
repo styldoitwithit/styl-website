@@ -70,9 +70,7 @@ export function ContactSection() {
                   <div>
                     <p className="font-body text-xs text-text-secondary uppercase tracking-wider">Address</p>
                     <p className="font-body text-sm text-white leading-relaxed">
-                      Mount Towers, Mount Poonamallee Rd,<br />
-                      Sathya Nagar, Ramapuram,<br />
-                      Chennai, Tamil Nadu 600089
+                      Phase 1, GREETA TOWERS, Greeta Techpark, No: 99, Rajiv Gandhi Salai, Industrial Estate, Perungudi, Chennai, Tamil Nadu 600096
                     </p>
                   </div>
                 </div>

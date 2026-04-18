@@ -6,10 +6,12 @@ import { clsx } from 'clsx';
 import {
   HomeIcon, UserGroupIcon, ChatBubbleLeftIcon, ChartBarIcon,
   BriefcaseIcon, DocumentTextIcon, StarIcon, EnvelopeIcon, ArrowRightOnRectangleIcon,
+  Squares2X2Icon,
 } from '@heroicons/react/24/outline';
 
 const navItems = [
   { id: 'overview', label: 'Dashboard', icon: HomeIcon },
+  { id: 'page_content', label: 'Page Content', icon: Squares2X2Icon },
   { id: 'clients', label: 'Clients', icon: UserGroupIcon },
   { id: 'testimonials', label: 'Testimonials', icon: ChatBubbleLeftIcon },
   { id: 'case_studies', label: 'Case Studies', icon: ChartBarIcon },

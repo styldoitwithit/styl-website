@@ -2,47 +2,23 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { ContactSection } from '@/components/sections/ContactSection';
+import { getPageContent } from '@/lib/firestore';
 import Link from 'next/link';
 
-const steps = [
-  {
-    number: '01',
-    title: 'Discovery & Audit',
-    duration: 'Week 1',
-    desc: 'We start by deeply understanding your hospital, your patients, and your competitors. We audit your existing digital presence — website, social media, SEO, and ads — to identify the gaps and opportunities.',
-    deliverables: ['Full digital audit report', 'Competitor analysis', 'Target patient persona development', 'Current performance baseline'],
-  },
-  {
-    number: '02',
-    title: 'Strategy & Planning',
-    duration: 'Week 2',
-    desc: 'Based on the audit, we build a custom 90-day marketing strategy tailored specifically to your hospital\'s goals, budget, and patient demographics. No generic templates — every strategy is bespoke.',
-    deliverables: ['90-day marketing roadmap', 'Channel selection & budget allocation', 'Content calendar', 'KPIs and success metrics'],
-  },
-  {
-    number: '03',
-    title: 'Brand & Creative',
-    duration: 'Week 2–3',
-    desc: 'We develop or refresh your brand identity, create all creative assets, and set up the technical infrastructure needed for campaigns — landing pages, tracking, ad accounts, and content.',
-    deliverables: ['Brand guidelines', 'Ad creatives & copy', 'Landing pages', 'Tracking & analytics setup'],
-  },
-  {
-    number: '04',
-    title: 'Launch & Optimise',
-    duration: 'Week 3 onwards',
-    desc: 'Campaigns go live. We monitor performance daily, optimise in real-time, and make data-driven adjustments to continuously improve results. You\'ll see leads coming in within the first week.',
-    deliverables: ['Campaign launch', 'Daily performance monitoring', 'Weekly optimisation', 'A/B testing'],
-  },
-  {
-    number: '05',
-    title: 'Reporting & Scale',
-    duration: 'Monthly',
-    desc: 'Every month, you receive a clear performance report showing exactly what your investment achieved — new patients, cost per lead, ROI, and next month\'s plan. When results are strong, we scale up.',
-    deliverables: ['Monthly performance report', 'ROI analysis', 'Next month strategy', 'Scaling recommendations'],
-  },
+const defaultSteps = [
+  { number: '01', title: 'Discovery & Audit', duration: 'Week 1', desc: 'We start by deeply understanding your hospital, your patients, and your competitors. We audit your existing digital presence — website, social media, SEO, and ads — to identify the gaps and opportunities.', deliverables: ['Full digital audit report', 'Competitor analysis', 'Target patient persona development', 'Current performance baseline'] },
+  { number: '02', title: 'Strategy & Planning', duration: 'Week 2', desc: 'Based on the audit, we build a custom 90-day marketing strategy tailored specifically to your hospital\'s goals, budget, and patient demographics. No generic templates — every strategy is bespoke.', deliverables: ['90-day marketing roadmap', 'Channel selection & budget allocation', 'Content calendar', 'KPIs and success metrics'] },
+  { number: '03', title: 'Brand & Creative', duration: 'Week 2–3', desc: 'We develop or refresh your brand identity, create all creative assets, and set up the technical infrastructure needed for campaigns — landing pages, tracking, ad accounts, and content.', deliverables: ['Brand guidelines', 'Ad creatives & copy', 'Landing pages', 'Tracking & analytics setup'] },
+  { number: '04', title: 'Launch & Optimise', duration: 'Week 3 onwards', desc: 'Campaigns go live. We monitor performance daily, optimise in real-time, and make data-driven adjustments to continuously improve results. You\'ll see leads coming in within the first week.', deliverables: ['Campaign launch', 'Daily performance monitoring', 'Weekly optimisation', 'A/B testing'] },
+  { number: '05', title: 'Reporting & Scale', duration: 'Monthly', desc: 'Every month, you receive a clear performance report showing exactly what your investment achieved — new patients, cost per lead, ROI, and next month\'s plan. When results are strong, we scale up.', deliverables: ['Monthly performance report', 'ROI analysis', 'Next month strategy', 'Scaling recommendations'] },
 ];
 
-export default function ProcessPage() {
+type Step = { number: string; title: string; duration: string; desc: string; deliverables: string[] };
+
+export default async function ProcessPage() {
+  const raw = await getPageContent('process_steps');
+  const steps: Step[] = raw?.steps ? (raw.steps as Step[]) : defaultSteps;
+
   return (
     <>
       <Navbar />
@@ -66,13 +42,11 @@ export default function ProcessPage() {
         <section className="py-24 bg-surface">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="relative">
-              {/* Vertical line */}
               <div className="absolute left-8 top-0 bottom-0 w-px bg-border hidden md:block" />
 
               <div className="space-y-12">
-                {steps.map((step, index) => (
+                {steps.map((step) => (
                   <div key={step.number} className="relative flex gap-8">
-                    {/* Step indicator */}
                     <div className="flex-shrink-0 w-16 h-16 rounded-full bg-gold flex items-center justify-center z-10 shadow-[0_0_20px_rgba(201,168,76,0.3)]">
                       <span className="font-heading text-lg font-bold text-black">{step.number}</span>
                     </div>
@@ -103,7 +77,6 @@ export default function ProcessPage() {
           </div>
         </section>
 
-        {/* CTA */}
         <section className="py-24 bg-navy">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <SectionHeading title="Ready to Start?" subtitle="Your first consultation is free. Let's talk about your goals." goldAccent />
