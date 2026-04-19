@@ -21,7 +21,7 @@ export function TestimonialsCarousel({ testimonials }: { testimonials: Testimoni
     .join('');
 
   return (
-    <section className="py-24 bg-navy">
+    <section className="pt-10 pb-24 bg-navy">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading title="Client Voices" goldAccent />
 

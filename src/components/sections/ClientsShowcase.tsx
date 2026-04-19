@@ -292,8 +292,6 @@ export function ClientsShowcase() {
         paddingBottom: 30,
         overflow: "hidden",
       }}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
     >
       {/* ── Heading ─────────────────────────────────────────────── */}
       <div style={{ textAlign: "center", paddingBottom: 0 }}>

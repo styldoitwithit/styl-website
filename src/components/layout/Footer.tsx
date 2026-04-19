@@ -17,15 +17,24 @@ const pageLinks = [
   { label: 'Blog', href: '/blog' },
   { label: 'Process', href: '/process' },
   { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const legalLinks = [
+  { label: 'Privacy Policy', href: '/privacy-policy' },
+  { label: 'Cookie Policy', href: '/cookie-policy' },
+  { label: 'Disclaimer', href: '/disclaimer' },
+  { label: 'Refund & Cancellation', href: '/refund-policy' },
+  { label: 'Copyright Policy', href: '/copyright' },
 ];
 
 export function Footer() {
   return (
     <footer className="bg-surface border-t border-border mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
-          <div>
+          <div className="lg:col-span-1">
             <span className="font-heading text-3xl font-bold text-gold tracking-widest">STYL</span>
             <p className="mt-3 text-text-secondary font-body text-sm leading-relaxed">
               India&apos;s No.1 Healthcare Branding Expert for Hospitals & Doctors. Based in Chennai.
@@ -74,6 +83,20 @@ export function Footer() {
             </ul>
           </div>
 
+          {/* Legal */}
+          <div>
+            <h4 className="font-heading text-lg text-white mb-4">Legal</h4>
+            <ul className="space-y-2">
+              {legalLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="font-body text-sm text-text-secondary hover:text-gold transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Contact */}
           <div>
             <h4 className="font-heading text-lg text-white mb-4">Contact</h4>
@@ -89,7 +112,12 @@ export function Footer() {
                 </a>
               </li>
               <li className="font-body text-sm text-text-secondary leading-relaxed">
+                <span className="text-xs text-gold uppercase tracking-wider">Chennai</span><br />
                 Phase 1, GREETA TOWERS, Greeta Techpark, No: 99, Rajiv Gandhi Salai, Industrial Estate, Perungudi, Chennai, Tamil Nadu 600096
+              </li>
+              <li className="font-body text-sm text-text-secondary leading-relaxed">
+                <span className="text-xs text-gold uppercase tracking-wider">Trichy</span><br />
+                Address placeholder, Trichy, Tamil Nadu
               </li>
             </ul>
           </div>
@@ -99,9 +127,15 @@ export function Footer() {
           <p className="font-body text-xs text-text-secondary">
             © {new Date().getFullYear()} STYL Digital Marketing. All rights reserved.
           </p>
-          <p className="font-body text-xs text-text-secondary">
-            Healthcare Branding Experts · Chennai, India
-          </p>
+          <div className="flex items-center gap-4">
+            {legalLinks.slice(0, 2).map((link) => (
+              <Link key={link.href} href={link.href} className="font-body text-xs text-text-secondary hover:text-gold transition-colors">
+                {link.label}
+              </Link>
+            ))}
+            <span className="font-body text-xs text-text-secondary">·</span>
+            <p className="font-body text-xs text-text-secondary">Healthcare Branding Experts · Chennai, India</p>
+          </div>
         </div>
       </div>
     </footer>

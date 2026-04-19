@@ -5,13 +5,13 @@ import { storageUrl } from '@/lib/firebase';
 import Image from 'next/image';
 
 const defaultData = {
-  heading: 'Real Results, Real Voices',
-  subtitle: "Don't take our word for it — hear directly from our clients",
+  heading: 'See Our Work in Action',
+  subtitle: "Real content we create for real healthcare brands — live on Instagram",
   items: [
-    { title: 'Dr. Jaikish — ATLAS Hospitals', subtitle: 'How we grew patient acquisition by 40%', href: 'https://www.instagram.com/doitinstyl/', bg: 'from-navy to-background' },
-    { title: 'Dr. Madhupriya — Shree Clinic', subtitle: 'Building trust in fertility care online', href: 'https://www.instagram.com/p/DVXqaZYj8HF/', bg: 'from-gold/10 to-background' },
-    { title: 'Dr. Vijayanad — Sri Ramakrishna', subtitle: 'Scaling a specialty hospital brand', href: 'https://www.instagram.com/reel/DQJ4Edgk8IB/', bg: 'from-navy to-background' },
-    { title: 'See All Testimonials', subtitle: 'Follow us on Instagram', href: 'https://www.instagram.com/reel/DVaTfHzDRIX/', bg: 'from-gold/20 to-background' },
+    { title: 'What Our Clients Say', subtitle: 'How we grew patient acquisition by 40%', href: 'https://www.instagram.com/doitinstyl/', bg: 'from-navy to-background' },
+    { title: 'Dr. G Mukesh Mohan — Mukesh Arthro Care', subtitle: 'Scaling an orthopaedic brand online', href: 'https://www.instagram.com/p/DVXqaZYj8HF/', bg: 'from-gold/10 to-background' },
+    { title: 'Dr. Vijayanad — Sri Ramakrishna', subtitle: 'Scaling a specialty hospital brand', href: 'https://www.instagram.com/reel/DVSlH34D28U/', bg: 'from-navy to-background' },
+    { title: 'Dr. Madhupriya — Shree Clinic', subtitle: 'Building trust in fertility care online', href: 'https://www.instagram.com/reel/DVaTfHzDRIX/', bg: 'from-gold/20 to-background' },
   ],
 };
 
@@ -32,7 +32,12 @@ export async function VideoTestimonials() {
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
           {/* Card 1 — inline video */}
-          <div className="group relative aspect-9/16 rounded-xl overflow-hidden border border-border hover:border-gold/50 transition-all duration-300">
+          <a
+            href="https://www.instagram.com/doitinstyl/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative aspect-9/16 rounded-xl overflow-hidden border border-border hover:border-gold/50 transition-all duration-300 block"
+          >
             <video
               src={storageUrl('testimonial-1.mp4')}
               className="absolute inset-0 w-full h-full object-cover"
@@ -51,12 +56,12 @@ export async function VideoTestimonials() {
                 <PlayCircleIcon className="w-9 h-9 text-gold" />
               </div>
             </div>
-          </div>
+          </a>
 
           {/* Cards 2–4 — images linking to Instagram */}
           {[
             { src: storageUrl('testimonial-2.jpg'), href: 'https://www.instagram.com/p/DVXqaZYj8HF/' },
-            { src: storageUrl('testimonial-3.jpg'), href: 'https://www.instagram.com/reel/DQJ4Edgk8IB/' },
+            { src: storageUrl('testimonial-3.jpg'), href: 'https://www.instagram.com/reel/DVSlH34D28U/' },
             { src: storageUrl('testimonial-4.jpg'), href: 'https://www.instagram.com/reel/DVaTfHzDRIX/' },
           ].map((card, i) => (
             <a

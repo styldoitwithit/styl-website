@@ -1,5 +1,7 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getPageContent } from '@/lib/firestore';
+import { storageUrl } from '@/lib/firebase';
 
 const defaultData = {
   badge: 'The Problems',
@@ -10,7 +12,7 @@ const defaultData = {
     { title: 'Weak Brand Perception', desc: "No consistent identity means patients don't trust you before they even walk through the door." },
     { title: 'Inefficient Ad Spend', desc: "Generic campaigns burn your budget targeting the wrong people at the wrong time." },
   ],
-  rightText: 'We solve all of this — so you can focus on what you do best.',
+  rightText: 'Invisible online. Losing patients. Burning budget. Sound familiar?',
   ctaText: "Let's Talk",
 };
 
@@ -57,14 +59,15 @@ export async function ProblemsSection() {
               {data.rightText}
             </p>
 
-            {/* Placeholder image */}
-            <div className="w-full aspect-video rounded-xl bg-surface border border-border flex items-center justify-center mb-8 overflow-hidden">
-              <div className="flex flex-col items-center gap-2 text-border">
-                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 3h18M3 21h18" />
-                </svg>
-                <span className="font-body text-xs uppercase tracking-widest">Image</span>
-              </div>
+            {/* Problems image */}
+            <div className="w-full aspect-video rounded-xl bg-surface border border-border overflow-hidden mb-8 relative">
+              <Image
+                src={storageUrl('problems-image.jpg')}
+                alt="Healthcare branding challenges"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
             </div>
 
             <Link

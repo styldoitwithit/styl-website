@@ -67,11 +67,19 @@ export function ContactSection() {
                   <div className="w-10 h-10 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center flex-shrink-0">
                     <MapPinIcon className="w-5 h-5 text-gold" />
                   </div>
-                  <div>
-                    <p className="font-body text-xs text-text-secondary uppercase tracking-wider">Address</p>
-                    <p className="font-body text-sm text-white leading-relaxed">
-                      Phase 1, GREETA TOWERS, Greeta Techpark, No: 99, Rajiv Gandhi Salai, Industrial Estate, Perungudi, Chennai, Tamil Nadu 600096
-                    </p>
+                  <div className="space-y-2">
+                    <div>
+                      <p className="font-body text-xs text-gold uppercase tracking-wider">Chennai</p>
+                      <p className="font-body text-sm text-white leading-relaxed">
+                        Phase 1, GREETA TOWERS, Greeta Techpark, No: 99, Rajiv Gandhi Salai, Industrial Estate, Perungudi, Chennai, Tamil Nadu 600096
+                      </p>
+                    </div>
+                    <div>
+                      <p className="font-body text-xs text-gold uppercase tracking-wider">Trichy</p>
+                      <p className="font-body text-sm text-white leading-relaxed">
+                        Address placeholder, Trichy, Tamil Nadu
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
