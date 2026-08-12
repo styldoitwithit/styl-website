@@ -54,13 +54,13 @@ export function ContactSection() {
                     <p className="font-body text-sm text-white group-hover:text-gold transition-colors">styldoitwithit@gmail.com</p>
                   </div>
                 </a>
-                <a href="tel:+919150088334" className="flex items-start gap-4 group">
+                <a href="tel:+919150099334" className="flex items-start gap-4 group">
                   <div className="w-10 h-10 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center flex-shrink-0 group-hover:bg-gold/20 transition-colors">
                     <PhoneIcon className="w-5 h-5 text-gold" />
                   </div>
                   <div>
                     <p className="font-body text-xs text-text-secondary uppercase tracking-wider">Phone</p>
-                    <p className="font-body text-sm text-white group-hover:text-gold transition-colors">+91 91500 88334</p>
+                    <p className="font-body text-sm text-white group-hover:text-gold transition-colors">+91 91500 99334</p>
                   </div>
                 </a>
                 <div className="flex items-start gap-4">
