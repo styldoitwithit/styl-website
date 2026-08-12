@@ -4,7 +4,7 @@ import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "STYL Digital Marketing | Healthcare Branding Experts",
-  description: " finney India's No.1 Healthcare Branding Expert for Hospitals & Doctors. Based in Chennai, serving hospitals across India.",
+  description: " Finney India's No.1 Healthcare Branding Expert for Hospitals & Doctors. Based in Chennai, serving hospitals across India.",
                           
 };
 
