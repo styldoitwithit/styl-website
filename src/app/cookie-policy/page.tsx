@@ -123,7 +123,7 @@ export default function CookiePolicyPage() {
         <p>
           <strong>STYL Digital Marketing</strong><br />
           Email: <a href="mailto:styldoitwithit@gmail.com">styldoitwithit@gmail.com</a><br />
-          Phone: <a href="tel:+919150088334">+91 91500 99334</a>
+          Phone: <a href="tel:+919150099334">+91 91500 99334</a>
         </p>
       </LegalPage>
       <Footer />
