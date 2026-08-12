@@ -87,7 +87,7 @@ export default function RefundPolicyPage() {
           Phase 1, GREETA TOWERS, Greeta Techpark, No: 99, Rajiv Gandhi Salai,<br />
           Industrial Estate, Perungudi, Chennai, Tamil Nadu 600096<br />
           Email: <a href="mailto:styldoitwithit@gmail.com">styldoitwithit@gmail.com</a><br />
-          Phone: <a href="tel:+919150088334">+91 91500 88334</a>
+          Phone: <a href="tel:+919150099334">+91 91500 99334</a>
         </p>
       </LegalPage>
       <Footer />
